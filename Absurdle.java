@@ -22,20 +22,14 @@ public class Absurdle  {
         Scanner console = new Scanner(System.in);
         System.out.println("Welcome to the game of Absurdle.");
 
-        System.out.print("What dictionary would you like to use? ");
-        String dictName = console.next();
-
-        System.out.print("What length word would you like to guess? ");
-        int wordLength = console.nextInt();
-
-        List<String> contents = loadFile(new Scanner(new File(dictName)));
-        Set<String> words = pruneDictionary(contents, wordLength);
+        List<String> contents = loadFile(new Scanner(new File("dictionary1.txt")));
+        Set<String> words = pruneDictionary(contents, 5);
 
         List<String> guessedPatterns = new ArrayList<>();
         while (!isFinished(guessedPatterns)) {
             System.out.print("> ");
             String guess = console.next();
-            String pattern = record(guess, words, wordLength);
+            String pattern = record(guess, words, 5);
             guessedPatterns.add(pattern);
             System.out.println(": " + pattern);
             System.out.println();
